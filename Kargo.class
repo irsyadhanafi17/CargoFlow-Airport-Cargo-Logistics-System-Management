@@ -1,0 +1,39 @@
+package cargoflow;
+
+public class Kargo implements Comparable<Kargo> {
+    private String idKargo;
+    private String namaBarang;
+    private String tujuan;
+    private int prioritas; // 1: Regular, 2: High, 3: Critical
+    private double berat; 
+
+    public Kargo(String idKargo, String namaBarang, String tujuan, int prioritas, double berat) {
+        this.idKargo = idKargo;
+        this.namaBarang = namaBarang;
+        this.tujuan = tujuan;
+        this.prioritas = prioritas;
+        this.berat = berat;
+    }
+
+    public String getIdKargo() { return idKargo; }
+    public String getNamaBarang() { return namaBarang; }
+    public String getTujuan() { return tujuan; }
+    public int getPrioritas() { return prioritas; }
+    public double getBerat() { return berat; }
+
+    @Override
+    public int compareTo(Kargo other) {
+        // Pengurutan utama berdasarkan prioritas tertinggi
+        if (this.prioritas != other.prioritas) {
+            return Integer.compare(other.prioritas, this.prioritas); 
+        }
+        // Jika prioritas sama, kargo yang lebih berat didahulukan
+        return Double.compare(other.berat, this.berat);
+    }
+
+    @Override
+    public String toString() {
+        String pStr = prioritas == 3 ? "CRITICAL" : (prioritas == 2 ? "HIGH" : "REGULAR");
+        return "[" + idKargo + "] " + namaBarang + " ke " + tujuan + " (" + pStr + " | " + berat + " Kg)";
+    }
+}
