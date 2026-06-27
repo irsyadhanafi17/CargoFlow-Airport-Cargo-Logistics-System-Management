@@ -25,10 +25,10 @@ public class Kargo implements Comparable<Kargo> {
     public int compareTo(Kargo other) {
         // Pengurutan utama berdasarkan prioritas tertinggi
         if (this.prioritas != other.prioritas) {
-            return Integer.compare(other.prioritas, this.prioritas); 
+        return Integer.compare(this.prioritas, other.prioritas); 
         }
         // Jika prioritas sama, kargo yang lebih berat didahulukan
-        return Double.compare(other.berat, this.berat);
+        return Double.compare(this.berat, other.berat);
     }
 
     @Override
